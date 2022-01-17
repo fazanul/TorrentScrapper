@@ -1,5 +1,5 @@
 # TorrentScrapperBot
-Just a Bot to scrap torrents from [1Tamilmv](https://1Tamilmv.com/)
+Just a Bot to scrap torrents from [1TamilMV.com](https://1Tamilmv.com/) and [TamilBlasters.com](https://tamilblasters.com/)
 ### Installation
 
 #### The Easy Way
