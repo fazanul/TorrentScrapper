@@ -1,13 +1,13 @@
 {
   "name": "TorrentScrapper",
-  "description": "Telegram bot to scrap torrent links from 1TamilMV and TamilBlasters",
+  "description": "Telegram bot to scrap torrent links from 1TamilMV.com and TamilBlasters.com",
   "keywords": [
     "telegram",
     "best",
     "scrap",
     "selenium"
   ],
-  "logo": "https://telegra.ph/file/bdd3352951be090a56590.jpg",
+  "logo": "https://telegra.ph/file/30689f29d52474b58c614.jpg",
   "success_url": "https://telegram.dog/ask_admin001",
   "website": "https://github.com/kevinnadar22/TorrentScrapper",
   "repository": "https://github.com/kevinnadar22/TorrentScrapper",
