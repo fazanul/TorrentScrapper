@@ -44,13 +44,13 @@ async def link_regex(bot, message):
             title = driver.find_element(By.XPATH, '//h1').text
         except NoSuchElementException:
             title = ""
-        heading = f"{title}\n\n"
+        heading = f"**{title}**\n\n"
         msg = ""
         for link in torrent_link:
             tor = link.get_attribute("href")
             text = link.text
-            msg += f"**Name : {text}**\n**Torrent:** `{tor}`\n\n-----------------\n\n"
-        await message.reply_text(heading + msg)
+            msg += f"**Name : {text}**\nLink:** `{tor}`\n\n-\n\n"
+        await message.reply_text(heading + msg + "**--@T2Links**")
         await txt.delete()
     except MessageEmpty:
         await message.reply_text('Some error occurred')
