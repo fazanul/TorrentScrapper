@@ -1,4 +1,4 @@
-# Torrent_Scrapper-bot
+# TorrentScrapperBot
 Just a Bot to scrap torrents from [1Tamilmv](https://1Tamilmv.com/)
 ### Installation
 
