@@ -8,9 +8,9 @@
         "search",
         "bot"
     ],
-    "repository": "https://github.com/AbirHasan2005/Torrent-Search-Bot",
+    "repository": "https://github.com/kevinnadar22/TorrentScrapper",
     "website": "https://telegram.dog/ask_admin001",
-    "success_url": "https://github.com/AbirHasan2005/Torrent-Search-Bot",
+    "success_url": "https://github.com/kevinnadar22/TorrentScrapper",
     "env": {
         "API_ID": {
             "description": "Get this value from my.telegram.org or @TeleORG_Bot"
