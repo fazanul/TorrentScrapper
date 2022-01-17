@@ -8,6 +8,7 @@ from pyrogram import Client, filters
 from selenium.webdriver.chrome.options import Options
 from  pyrogram.errors.exceptions.bad_request_400 import MessageEmpty
 from config import API_ID, API_HASH, BOT_TOKEN
+from webdriver_manager.chrome import ChromeDriverManager
 
 options = Options()
 options.add_argument("--headless")
@@ -15,7 +16,7 @@ options.add_argument("--disable-dev-shm-usage")
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-gpu")
 options.add_argument("--disable-infobars")
-driver = webdriver.Chrome(options=options)
+driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
 
 bot = Client(
     "Web Scrapping Bot",
