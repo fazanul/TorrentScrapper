@@ -29,7 +29,7 @@ torrent = []
 
 @bot.on_message(filters.command('start'))
 async def start(bot, message):
-    await message.reply_text(message.chat.id, "Send Any 1tamilmv.com Link")
+    await message.reply_text(message.chat.id, "Send Any 1TamilMV.com or TamilBlasters.com Link")
 
 
 @bot.on_message(filters.regex("index\.php\?/forums/topic"))
