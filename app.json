@@ -1,28 +1,27 @@
 {
-    "name": "Torrent Scrapper bot from 1TamilMV",
-    "description": "A Simple Telegram Bot to scrap torrents from 1TamilMV.com",
+    "name": "TorrentScrapperBot",
+    "description": "Scrap torrents from 1TamilMV.com",
     "keywords": [
         "telegram",
-        "scrapper",
-        "torrent",
-        "search",
-        "bot"
+        "torrent"
     ],
+    "website": "https://github.com/kevinnadar22",
     "repository": "https://github.com/kevinnadar22/TorrentScrapper",
-    "website": "https://telegram.dog/ask_admin001",
-    "success_url": "https://github.com/kevinnadar22/TorrentScrapper",
     "env": {
+        "BOT_TOKEN": {
+            "description": "Your bot token",
+            "value": ""
+        },
         "API_ID": {
-            "description": "Get this value from my.telegram.org or @TeleORG_Bot"
+            "description": "Get this value from https://my.telegram.org",
+            "value": ""
         },
         "API_HASH": {
-            "description": "Get this value from my.telegram.org or @TeleORG_Bot"
-        },
-
-        "BOT_TOKEN": {
-            "description": "Your Telegram Bot Token by @BotFather"
+            "description": "Get this value from https://my.telegram.org",
+            "value": ""
         },
     },
+    "addons": [],
     "buildpacks": [
         {
             "url": "heroku/python"
@@ -33,5 +32,5 @@
             "quantity": 1,
             "size": "free"
         }
-    },
+    }
 }
