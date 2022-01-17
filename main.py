@@ -1,21 +1,22 @@
 # (c) @ask_admin001
 
 import time
+import os
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import NoSuchWindowException, NoSuchElementException, ElementClickInterceptedException
+from selenium.common.exceptions import NoSuchElementException
 from pyrogram import Client, filters
-from selenium.webdriver.chrome.options import Options
-from  pyrogram.errors.exceptions.bad_request_400 import MessageEmpty
+from pyrogram.errors.exceptions.bad_request_400 import MessageEmpty
 from config import API_ID, API_HASH, BOT_TOKEN
 
-options = webdriver.ChromeOptions()
+options = webdriver.ChromeOptions
+options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 options.add_argument("--headless")
 options.add_argument("--disable-dev-shm-usage")
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-gpu")
 options.add_argument("--disable-infobars")
-driver = webdriver.Chrome(options=options)
+driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=options)
 
 bot = Client(
     "Web Scrapping Bot",
@@ -29,7 +30,7 @@ torrent = []
 
 @bot.on_message(filters.command('start'))
 async def start(bot, message):
-    await message.reply_text(message.chat.id, "Send Any 1TamilMV.com or TamilBlasters.com Link")
+    await message.reply_text(message.chat.id, "Send Any 1tamilmv.com Link")
 
 
 @bot.on_message(filters.regex("index\.php\?/forums/topic"))
@@ -49,11 +50,12 @@ async def link_regex(bot, message):
             tor = link.get_attribute("href")
             text = link.text
             msg += f"Name : {text}\nTorrent: {tor}\n\n"
-        await message.reply_text(heading+msg)
+        await message.reply_text(heading + msg)
         await txt.delete()
     except MessageEmpty:
         await message.reply_text('Some error occurred')
         await txt.delete()
+
+
 print("Bot running...")
 bot.run()
-
