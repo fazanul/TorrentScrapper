@@ -1,6 +1,6 @@
 {
     "name": "TorrentScrapperBot",
-    "description": "Scrap torrents from 1TamilMV.com",
+    "description": "Scrap torrents from 1TamilMV.com and TamilBlasters.com",
     "keywords": [
         "telegram",
         "torrent"
