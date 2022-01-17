@@ -1,21 +1,17 @@
 {
-  "name": "File Store",
-  "description": "Telegram bot to store your telegram files",
+  "name": "TorrentScrapper",
+  "description": "Telegram bot to scrap torrent links from 1TamilMV and TamilBlasters",
   "keywords": [
     "telegram",
     "best",
-    "Store",
-    "Files"
+    "scrap",
+    "selenium"
   ],
   "logo": "https://telegra.ph/file/bdd3352951be090a56590.jpg",
-  "success_url": "https://telegram.dog/filestore_Nsbot",
-  "website": "https://github.com/Ns-Bots/TG-File-Store",
-  "repository": "https://github.com/Ns-Bots/TG-File-Store",
+  "success_url": "https://telegram.dog/ask_admin001",
+  "website": "https://github.com/kevinnadar22/TorrentScrapper",
+  "repository": "https://github.com/kevinnadar22/TorrentScrapper",
   "env": {
-    "WEBHOOK": {
-      "description": "Setting this to ANYTHING will enable webhooks when in env mode",
-      "value": "ANYTHING"
-    },
     "BOT_TOKEN": {
       "description": "Your bot token, as a string.",
       "value": ""
@@ -24,19 +20,7 @@
       "description": "Get this value from https://my.telegram.org",
       "value": ""
     },
-    "DB_CHANNEL_ID": {
-      "description": "give me the telegram channel ID here (better this should be private channel)",
-      "value": ""
-    },
-    "UPDATE_CHANNEL": {
-      "description": "Your bot updates channel like Ns_bot_updates (username without @ for forcesub). (Leave empty it you don't want to add)",
-      "value": "",
-      "required": false
-    },
-    "OWNER_ID": {
-      "description": "give your telegram user id here",
-      "value": ""
-    },
+
     "API_HASH": {
       "description": "Get this value from https://my.telegram.org",
       "value": ""
@@ -45,10 +29,13 @@
   "addons": [
   ],
   "buildpacks": [{
-    "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
+    "url": "https://github.com/heroku/heroku-buildpack-google-chrome"
   }, {
     "url": "heroku/python"
-  }],
+  }, {
+    "url": "https://github.com/heroku/heroku-buildpack-chromedriver"
+  }
+  ],
   "formation": {
     "worker": {
       "quantity": 1,
