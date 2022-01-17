@@ -49,9 +49,8 @@ async def link_regex(bot, message):
         for link in torrent_link:
             tor = link.get_attribute("href")
             text = link.text
-            msg = f"/leechfile {tor}"
-            await message.reply_text(msg)
-        
+            msg += f"Name : {text}\nTorrent: `{tor}`\n\n"
+        await message.reply_text(heading + msg)
         await txt.delete()
     except MessageEmpty:
         await message.reply_text('Some error occurred')
