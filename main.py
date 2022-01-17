@@ -49,7 +49,7 @@ async def link_regex(bot, message):
         for link in torrent_link:
             tor = link.get_attribute("href")
             text = link.text
-            msg += f"**Name : {text}**\nLink:** `{tor}`\n\n-\n\n"
+            msg += f"**Name : {text}**\n**Link:** `{tor}`\n\n-\n\n"
         await message.reply_text(heading + msg + "**--@T2Links**")
         await txt.delete()
     except MessageEmpty:
