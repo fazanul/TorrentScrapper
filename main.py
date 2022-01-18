@@ -81,12 +81,10 @@ async def link_regex(bot, message):
         heading = f"**{title}**\n\n"
         await txt.delete()
         txt = await bot.send_message(message.chat.id, "Select the Command", reply_markup=reply_markup)
-
         @bot.on_callback_query()
         async def callback(c, m):
             try:
-                if m.data == "qbmirror3":
-                    await txt.edit("Scrapping torrent... Please Wait!!!")
+                if m.data == "qbmirror3":                    
                     msg = ""
                     random_command = "/qbmirror3"
                     for link in torrent_link:
@@ -95,10 +93,8 @@ async def link_regex(bot, message):
                         msg += f"**Name : {text}**\n**Link:** `{random_command} {tor}`\n\n-\n\n"
                     reply_text = f"{heading} + {msg} + **--@T2Links**"
                     await m.message.reply_text(reply_text)
-                    await txt.delete()
 
                 elif m.data == "qbmirror2":
-                    await txt.edit("Scrapping torrent... Please Wait!!!")
                     msg = ""
                     random_command = "/qbmirror2"
                     for link in torrent_link:
@@ -107,9 +103,7 @@ async def link_regex(bot, message):
                         msg += f"**Name : {text}**\n**Link:** `{random_command} {tor}`\n\n-\n\n"
                     reply_text = f"{heading} + {msg} + **--@T2Links**"
                     await message.reply_text(reply_text)
-                    await txt.delete()
                 elif m.data == "qbmirror":
-                    await txt.edit("Scrapping torrent... Please Wait!!!")
                     msg = ""
                     random_command = "/qbmirror"
                     for link in torrent_link:
@@ -118,9 +112,7 @@ async def link_regex(bot, message):
                         msg += f"**Name : {text}**\n**Link:** `{random_command} {tor}`\n\n-\n\n"
                     reply_text = f"{heading} + {msg} + **--@T2Links**"
                     await message.reply_text(reply_text)
-                    await txt.delete()
                 elif m.data == "qbleechfile2":
-                    await txt.edit("Scrapping torrent... Please Wait!!!")
                     msg = ""
                     random_command = "/qbleechfile2"
                     for link in torrent_link:
@@ -129,9 +121,7 @@ async def link_regex(bot, message):
                         msg += f"**Name : {text}**\n**Link:** `{random_command} {tor}`\n\n-\n\n"
                     reply_text = f"{heading} + {msg} + **--@T2Links**"
                     await message.reply_text(reply_text)
-                    await txt.delete()
                 elif m.data == "qbleechvideo":
-                    await txt.edit("Scrapping torrent... Please Wait!!!")
                     msg = ""
                     random_command = "/qbleechvideo"
                     for link in torrent_link:
@@ -140,18 +130,16 @@ async def link_regex(bot, message):
                         msg += f"**Name : {text}**\n**Link:** `{random_command} {tor}`\n\n-\n\n"
                     reply_text = f"{heading} {msg} **--@T2Links**"
                     await message.reply_text(reply_text)
-                    await txt.delete()
                 elif m.data == "qbleechfile":
-                    await txt.edit("Scrapping torrent... Please Wait!!!")
                     msg = ""
                     random_command = "/qbleechfile"
                     for link in torrent_link:
                         tor = link.get_attribute("href")
                         text = link.text
                         msg += f"**Name : {text}**\n**Link:** `{random_command} {tor}`\n\n-\n\n"
-                    reply_text = f"{heading} {msg} **--@T2Links**"
+                    reply_text = f"{heading} + {msg} + **--@T2Links**"
                     await message.reply_text(reply_text)
-                    await txt.delete()
+                await txt.delete()
             except MessageNotModified:
                 await bot.send_message(message.chat.id, "Some error Occurred")
 
