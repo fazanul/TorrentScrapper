@@ -1,12 +1,12 @@
 # (c) @ask_admin001
 
-import random
 import os
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 from pyrogram import Client, filters
-from pyrogram.errors.exceptions.bad_request_400 import MessageEmpty
+from pyrogram.errors.exceptions.bad_request_400 import MessageEmpty, MessageNotModified
+from pyrogram.types import ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton
 from config import API_ID, API_HASH, BOT_TOKEN
 
 options = webdriver.ChromeOptions()
