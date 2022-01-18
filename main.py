@@ -72,8 +72,7 @@ async def link_regex(bot, message):
     try:
         txt = await bot.send_message(message.chat.id, "Loading... Please Wait !!!")
         link = str(message.text)
-        driver.get(link)
-        driver.refresh()
+        driver.get(link)      
         driver.implicitly_wait(10)
         torrent_link = driver.find_elements(By.CLASS_NAME, "ipsAttachLink_block")
         try:
