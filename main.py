@@ -26,6 +26,40 @@ bot = Client(
 )
 
 torrent = []
+reply_markup = InlineKeyboardMarkup(
+    [
+        [  # First row
+            InlineKeyboardButton(  # Generates a callback query when pressed
+                "/qbleechfile",
+                callback_data="qbleechfile"
+            ),
+            InlineKeyboardButton(  # Opens a web URL
+                "/qbmirror",
+                callback_data="qbmirror"
+            ),
+        ],
+        [  # Second row
+            InlineKeyboardButton(  # Opens the inline interface
+                "/qbleechvideo",
+                callback_data="qbleechvideo"
+            ),
+            InlineKeyboardButton(  # Opens the inline interface in the current chat
+                "/qbmirror2",
+                callback_data="qbmirror2"
+            )
+        ],
+        [  # Third row
+            InlineKeyboardButton(  # Opens the inline interface
+                "/qbleechfile2",
+                callback_data="qbleechfile2"
+            ),
+            InlineKeyboardButton(  # Opens the inline interface in the current chat
+                "/qbmirror3",
+                callback_data="qbmirror3"
+            )
+        ]
+    ]
+)
 
 
 @bot.on_message(filters.command('start'))
@@ -36,7 +70,7 @@ async def start(bot, message):
 @bot.on_message(filters.regex("index\.php\?/forums/topic"))
 async def link_regex(bot, message):
     try:
-        txt = await message.reply_text("Scrapping torrent link, Please Wait")
+        txt = await bot.send_message(message.chat.id, "Loading... Please Wait !!!")
         link = str(message.text)
         driver.get(link)
         torrent_link = driver.find_elements(By.CLASS_NAME, "ipsAttachLink_block")
@@ -45,16 +79,82 @@ async def link_regex(bot, message):
         except NoSuchElementException:
             title = ""
         heading = f"**{title}**\n\n"
-        msg = ""
-        command = ['/qbleechfile', '/qbleechfile2', "/qbleechvideo"]
-        random_command = random.choice(command)
-        for link in torrent_link:
-            tor = link.get_attribute("href")
-            text = link.text
-            msg += f"**Name : {text}**\n**Link:** `{random_command} {tor}`\n\n-\n\n"
-        reply_text = f"{heading} + {msg} + **--@T2Links**"
-        await message.reply_text(heading+msg)
         await txt.delete()
+        txt = await bot.send_message(message.chat.id, "Select the Command", reply_markup=reply_markup)
+
+        @bot.on_callback_query()
+        async def callback(c, m):
+            try:
+                if m.data == "qbmirror3":
+                    await txt.edit("Scrapping torrent... Please Wait!!!")
+                    msg = ""
+                    random_command = "/qbmirror3"
+                    for link in torrent_link:
+                        tor = link.get_attribute("href")
+                        text = link.text
+                        msg += f"**Name : {text}**\n**Link:** `{random_command} {tor}`\n\n-\n\n"
+                    reply_text = f"{heading} + {msg} + **--@T2Links**"
+                    await m.message.reply_text(reply_text)
+                    await txt.delete()
+
+                elif m.data == "qbmirror2":
+                    await txt.edit("Scrapping torrent... Please Wait!!!")
+                    msg = ""
+                    random_command = "/qbmirror2"
+                    for link in torrent_link:
+                        tor = link.get_attribute("href")
+                        text = link.text
+                        msg += f"**Name : {text}**\n**Link:** `{random_command} {tor}`\n\n-\n\n"
+                    reply_text = f"{heading} + {msg} + **--@T2Links**"
+                    await message.reply_text(reply_text)
+                    await txt.delete()
+                elif m.data == "qbmirror":
+                    await txt.edit("Scrapping torrent... Please Wait!!!")
+                    msg = ""
+                    random_command = "/qbmirror"
+                    for link in torrent_link:
+                        tor = link.get_attribute("href")
+                        text = link.text
+                        msg += f"**Name : {text}**\n**Link:** `{random_command} {tor}`\n\n-\n\n"
+                    reply_text = f"{heading} + {msg} + **--@T2Links**"
+                    await message.reply_text(reply_text)
+                    await txt.delete()
+                elif m.data == "qbleechfile2":
+                    await txt.edit("Scrapping torrent... Please Wait!!!")
+                    msg = ""
+                    random_command = "/qbleechfile2"
+                    for link in torrent_link:
+                        tor = link.get_attribute("href")
+                        text = link.text
+                        msg += f"**Name : {text}**\n**Link:** `{random_command} {tor}`\n\n-\n\n"
+                    reply_text = f"{heading} + {msg} + **--@T2Links**"
+                    await message.reply_text(reply_text)
+                    await txt.delete()
+                elif m.data == "qbleechvideo":
+                    await txt.edit("Scrapping torrent... Please Wait!!!")
+                    msg = ""
+                    random_command = "/qbleechvideo"
+                    for link in torrent_link:
+                        tor = link.get_attribute("href")
+                        text = link.text
+                        msg += f"**Name : {text}**\n**Link:** `{random_command} {tor}`\n\n-\n\n"
+                    reply_text = f"{heading} {msg} **--@T2Links**"
+                    await message.reply_text(reply_text)
+                    await txt.delete()
+                elif m.data == "qbleechfile":
+                    await txt.edit("Scrapping torrent... Please Wait!!!")
+                    msg = ""
+                    random_command = "/qbleechfile"
+                    for link in torrent_link:
+                        tor = link.get_attribute("href")
+                        text = link.text
+                        msg += f"**Name : {text}**\n**Link:** `{random_command} {tor}`\n\n-\n\n"
+                    reply_text = f"{heading} + {msg} + **--@T2Links**"
+                    await message.reply_text(reply_text)
+                    await txt.delete()
+            except MessageNotModified:
+                await bot.send_message(message.chat.id, "Some error Occurred")
+
     except MessageEmpty:
         await message.reply_text('Some error occurred')
         await txt.delete()
