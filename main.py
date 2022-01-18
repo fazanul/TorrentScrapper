@@ -149,7 +149,7 @@ async def link_regex(bot, message):
                         tor = link.get_attribute("href")
                         text = link.text
                         msg += f"**Name : {text}**\n**Link:** `{random_command} {tor}`\n\n-\n\n"
-                    reply_text = f"{heading} + {msg} + **--@T2Links**"
+                    reply_text = f"{heading} {msg} **--@T2Links**"
                     await message.reply_text(reply_text)
                     await txt.delete()
             except MessageNotModified:
