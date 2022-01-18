@@ -1,37 +1,45 @@
 {
-    "name": "Torrent Scrapper bot from 1TamilMV",
-    "description": "A Simple Telegram Bot to scrap torrents from 1TamilMV.com",
-    "keywords": [
-        "telegram",
-        "scrapper",
-        "torrent",
-        "search",
-        "bot"
-    ],
-    "repository": "https://github.com/AbirHasan2005/Torrent-Search-Bot",
-    "website": "https://telegram.dog/ask_admin001",
-    "success_url": "https://github.com/AbirHasan2005/Torrent-Search-Bot",
-    "env": {
-        "API_ID": {
-            "description": "Get this value from my.telegram.org or @TeleORG_Bot"
-        },
-        "API_HASH": {
-            "description": "Get this value from my.telegram.org or @TeleORG_Bot"
-        },
+  "name": "TorrentScrapper",
+  "description": "Telegram bot to scrap torrent links from 1TamilMV and TamilBlasters",
+  "keywords": [
+    "telegram",
+    "best",
+    "scrap",
+    "selenium"
+  ],
+  "logo": "https://telegra.ph/file/bdd3352951be090a56590.jpg",
+  "success_url": "https://telegram.dog/ask_admin001",
+  "website": "https://github.com/kevinnadar22/TorrentScrapper",
+  "repository": "https://github.com/kevinnadar22/TorrentScrapper",
+  "env": {
+    "BOT_TOKEN": {
+      "description": "Your bot token, as a string.",
+      "value": ""
+    },
+    "API_ID": {
+      "description": "Get this value from https://my.telegram.org",
+      "value": ""
+    },
 
-        "BOT_TOKEN": {
-            "description": "Your Telegram Bot Token by @BotFather"
-        },
-    },
-    "buildpacks": [
-        {
-            "url": "heroku/python"
-        }
-    ],
-    "formation": {
-        "worker": {
-            "quantity": 1,
-            "size": "free"
-        }
-    },
+    "API_HASH": {
+      "description": "Get this value from https://my.telegram.org",
+      "value": ""
+    }
+  },
+  "addons": [
+  ],
+  "buildpacks": [{
+    "url": "https://github.com/heroku/heroku-buildpack-google-chrome"
+  }, {
+    "url": "heroku/python"
+  }, {
+    "url": "https://github.com/heroku/heroku-buildpack-chromedriver"
+  }
+  ],
+  "formation": {
+    "worker": {
+      "quantity": 1,
+      "size": "free"
+    }
+  }
 }
