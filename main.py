@@ -46,11 +46,14 @@ async def link_regex(bot, message):
             title = ""
         heading = f"**{title}**\n\n"
         msg = ""
+        command = ['/qbleechfile', '/qbleechfile2', "/qbleechvideo"]
+        random_command = random.choice(command)
         for link in torrent_link:
             tor = link.get_attribute("href")
             text = link.text
-            msg += f"**Name : {text}**\n**Link:** `{tor}`\n\n-\n\n"
-        await message.reply_text(heading + msg + "**--@T2Links**")
+            msg += f"**Name : {text}**\n**Link:** `{random_command} {tor}`\n\n-\n\n"
+        reply_text = f"{heading} + {msg} + **--@T2Links**"
+        await message.reply_text(heading+msg)
         await txt.delete()
     except MessageEmpty:
         await message.reply_text('Some error occurred')
