@@ -1,6 +1,6 @@
 # (c) @ask_admin001
 
-import time
+import random
 import os
 from selenium import webdriver
 from selenium.webdriver.common.by import By
