@@ -146,6 +146,7 @@ async def link_regex(bot, message):
                     await message.reply_text(reply_text)
                   
                 await txt.delete()
+                driver.back()
   
             except MessageNotModified:
                 await bot.send_message(message.chat.id, "Some error Occurred")
