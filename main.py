@@ -94,7 +94,6 @@ async def link_regex(bot, message):
                         msg += f"**Name : {text}**\n**Link:** `{random_command} {tor}`\n\n-\n\n"
                     reply_text = f"{heading} + {msg} + **--@T2Links**"
                     await m.message.reply_text(reply_text)
-                    driver.back()
 
                 elif m.data == "qbmirror2":
                     msg = ""
@@ -105,7 +104,7 @@ async def link_regex(bot, message):
                         msg += f"**Name : {text}**\n**Link:** `{random_command} {tor}`\n\n-\n\n"
                     reply_text = f"{heading} + {msg} + **--@T2Links**"
                     await message.reply_text(reply_text)
-                    driver.back()
+                 
                 elif m.data == "qbmirror":
                     msg = ""
                     random_command = "/qbmirror"
@@ -115,7 +114,7 @@ async def link_regex(bot, message):
                         msg += f"**Name : {text}**\n**Link:** `{random_command} {tor}`\n\n-\n\n"
                     reply_text = f"{heading} + {msg} + **--@T2Links**"
                     await message.reply_text(reply_text)
-                    driver.back()
+                   
                 elif m.data == "qbleechfile2":
                     msg = ""
                     random_command = "/qbleechfile2"
@@ -125,7 +124,7 @@ async def link_regex(bot, message):
                         msg += f"**Name : {text}**\n**Link:** `{random_command} {tor}`\n\n-\n\n"
                     reply_text = f"{heading} + {msg} + **--@T2Links**"
                     await message.reply_text(reply_text)
-                    driver.back()
+                   
                 elif m.data == "qbleechvideo":
                     msg = ""
                     random_command = "/qbleechvideo"
@@ -135,7 +134,7 @@ async def link_regex(bot, message):
                         msg += f"**Name : {text}**\n**Link:** `{random_command} {tor}`\n\n-\n\n"
                     reply_text = f"{heading} {msg} **--@T2Links**"
                     await message.reply_text(reply_text)
-                    driver.back()
+                    
                 elif m.data == "qbleechfile":
                     msg = ""
                     random_command = "/qbleechfile"
@@ -145,7 +144,7 @@ async def link_regex(bot, message):
                         msg += f"**Name : {text}**\n**Link:** `{random_command} {tor}`\n\n-\n\n"
                     reply_text = f"{heading} {msg} **--@T2Links**"
                     await message.reply_text(reply_text)
-                    driver.back()
+                  
                 await txt.delete()
   
             except MessageNotModified:
