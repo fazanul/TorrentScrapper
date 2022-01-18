@@ -140,10 +140,10 @@ async def link_regex(bot, message):
                     reply_text = f"{heading} {msg} **--@T2Links**"
                     await message.reply_text(reply_text)
                 await txt.delete()
-                driver.back()
+  
             except MessageNotModified:
                 await bot.send_message(message.chat.id, "Some error Occurred")
-
+        driver.back()
     except MessageEmpty:
         await message.reply_text('Some error occurred')
         await txt.delete()
