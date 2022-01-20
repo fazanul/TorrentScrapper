@@ -83,7 +83,7 @@ async def get_shortlink(link):
             return result["filecode"]   
 
         
-@bot.on_message(filters.command('list') & filters.private)
+@bot.on_message(filters.command('list'))
 async def lists(c, m):
     texts = ""
     querys = ""
