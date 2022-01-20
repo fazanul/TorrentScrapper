@@ -1,5 +1,5 @@
 import random
-from main import bot, driver
+from main import driver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 from pyrogram import filters, Client
