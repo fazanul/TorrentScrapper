@@ -64,7 +64,7 @@ async def link_regex(bot, message):
         
 @bot.on_message(filters.regex(r'https://t2links\.kevin-264\.workers\.dev/0:/'))
 async def link_handler(bot, message):
-    link = message.matches[0].group(0)
+    link = str(message.text)
     try:
         short_link = await get_shortlink(link)
         await message.reply(f"https://videovard.sx/e/{short_link}", quote=True)
