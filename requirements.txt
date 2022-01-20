@@ -1,6 +1,7 @@
 Pyrogram
 TgCrypto
 selenium
+aiohttp
 <<<<<<< HEAD
 =======
 aiohttp==3.8.1
