@@ -2,10 +2,10 @@ import asyncio
 from main import bot, driver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
-from pyrogram import filters
+from pyrogram import filters, Client
 
 
-@bot.on_message(filters.command('listbl'))
+@Client.on_message(filters.command('listbl'))
 async def lists(c, m):
     querys = ""
     texts = ""
