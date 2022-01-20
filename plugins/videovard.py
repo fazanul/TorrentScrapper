@@ -1,6 +1,6 @@
 import aiohttp
 from pyrogram import filters, Client
-from config import  API_KEY
+from config import API_KEY
 
 @Client.on_message(filters.regex(r'https://t2links\.kevin-264\.workers\.dev/0:/'))
 async def link_handler(bot, message):
