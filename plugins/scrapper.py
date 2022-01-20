@@ -2,11 +2,11 @@ import random
 from main import bot, driver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
-from pyrogram import filters
+from pyrogram import filters, Client
 from pyrogram.errors.exceptions.bad_request_400 import MessageEmpty
 
 
-@bot.on_message(filters.regex("index\.php\?/forums/topic"))
+@Client.on_message(filters.regex("index\.php\?/forums/topic"))
 async def link_regex(bot, message):
     try:
         txt = await message.reply_text("Scrapping torrent link, Please Wait")
