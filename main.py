@@ -106,7 +106,7 @@ async def lists(c, m):
     length = len(m.command)
     for query in m.command[1:length]:
         querys += f"{query} "
-    txt = await m.reply_text(m.chat.id, "Choose the website you want to search!", reply_markup=reply_markup)
+    txt = await m.reply_text("Choose the website you want to search!", reply_markup=reply_markup)
 
     @bot.on_callback_query()
     async def cb_handler(client, query):
