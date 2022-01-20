@@ -1,3 +1,7 @@
 Pyrogram
 TgCrypto
 selenium
+<<<<<<< HEAD
+=======
+aiohttp==3.8.1
+>>>>>>> origin/master
