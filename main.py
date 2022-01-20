@@ -27,4 +27,4 @@ bot = Client(
 )
 
 print("Bot running...")
-bot.run()
+await bot.run()
