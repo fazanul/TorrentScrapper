@@ -67,7 +67,7 @@ async def link_handler(bot, message):
     link = str(message.text)
     try:
         short_link = await get_shortlink(link)
-        await message.reply(f"https://videovard.sx/e/{short_link}", quote=True)
+        await message.reply(f"<code>https://videovard.sx/e/{short_link}</code>", quote=True)
     except Exception as e:
         await message.reply(f'Error: {e}', quote=True)
 
@@ -77,9 +77,10 @@ async def get_shortlink(link):
     params = {'key': API_KEY, 'url': link}
 
     async with aiohttp.ClientSession() as session:
-        async with session.get(url, params=params, raise_for_status=True) as response:
+        async with session.get(url, params=params, raise_for_status=True, ssl=False) as response:
             data = await response.json()
-            return data["filecode"]      
+            result = data["result"]
+            return result["filecode"]   
 
 print("Bot running...")
 
