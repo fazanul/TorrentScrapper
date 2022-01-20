@@ -55,6 +55,7 @@ driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), c
 
 bot = Client(
     "Web Scrapping Bot",
+    plugins = dict(root="plugins")
     bot_token=BOT_TOKEN,
     api_id=API_ID,
     api_hash=API_HASH,
