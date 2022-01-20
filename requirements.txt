@@ -1,4 +1,4 @@
 Pyrogram
 TgCrypto
 selenium
-webdriver_manager
+aiohttp==3.8.1
