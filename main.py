@@ -2,6 +2,7 @@
 
 import random
 import os
+import aiohttp
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
@@ -26,7 +27,7 @@ bot = Client(
 )
 
 torrent = []
-
+API_KEY = "3239u7cq042faca6z1m5"
 
 @bot.on_message(filters.command('start'))
 async def start(bot, message):
@@ -66,19 +67,19 @@ async def link_handler(bot, message):
     link = message.matches[0].group(0)
     try:
         short_link = await get_shortlink(link)
-        await message.reply(short_link, quote=True)
+        await message.reply(f"https://videovard.sx/e/{short_link}", quote=True)
     except Exception as e:
         await message.reply(f'Error: {e}', quote=True)
 
 
 async def get_shortlink(link):
-    url = 'https://api.videovard.sx/v2/api/remote/list'
+    url = 'https://api.videovard.sx/v2/api/remote/add'
     params = {'key': API_KEY, 'url': link}
 
     async with aiohttp.ClientSession() as session:
         async with session.get(url, params=params, raise_for_status=True) as response:
             data = await response.json()
-            return data["msg"]      
+            return data["filecode"]      
 
 print("Bot running...")
 
