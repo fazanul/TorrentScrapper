@@ -19,7 +19,7 @@ options.add_argument("--no-sandbox")
 options.add_argument("--disable-gpu")
 options.add_argument("--disable-infobars")
 driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=options)
-
+driver.maximize_window()
 bot = Client(
     "Web Scrapping Bot",
     bot_token=BOT_TOKEN,
