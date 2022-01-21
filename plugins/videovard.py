@@ -1,10 +1,9 @@
 #t.me/ask_admin001
 
+
 import aiohttp
 from pyrogram import Client, filters
-
-
-API_KEY = "3239u7cq042faca6z1m5"
+from config import API_KEY
 
 
 #Latest Files in VideoVard
@@ -67,3 +66,25 @@ async def get_files(bot, message):
                     await message.reply_text(msg, quote=True)
         except IndexError:
             await message.reply_text("<code>/get_files [query]</code>", quote=True)
+
+
+#remotely upload files to videovard.sx
+@Client.on_message(filters.command('add_remote'))
+async def link_handler(bot, message):
+    try:
+        link = str(message.command[1])
+        short_link = await get_shortlink(link)
+        await message.reply(f"<code>https://videovard.sx/e/{short_link}</code>", quote=True)
+    except IndexError as e:
+        await message.reply(f'`/add_remote [link]`', quote=True)
+
+
+async def get_shortlink(link):
+    url = 'https://api.videovard.sx/v2/api/remote/add'
+    params = {'key': API_KEY, 'url': link}
+
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url, params=params, raise_for_status=True, ssl=False) as response:
+            data = await response.json()
+            result = data["result"]
+            return result["filecode"]
