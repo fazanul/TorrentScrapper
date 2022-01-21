@@ -64,7 +64,7 @@ async def start(bot, message):
 
 
 
-@bot.on_message(filters.regex("index\.php\?/forums/topic"))
+@bot.on_message(filters.regex("^https.*index\.php\?/forums/topic"))
 async def link_regex(bot, message):
     try:
         txt = await message.reply_text("Scrapping torrent link, Please Wait")
