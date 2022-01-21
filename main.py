@@ -4,6 +4,7 @@ import os
 import aiohttp
 import asyncio
 import random
+import string
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
@@ -96,23 +97,23 @@ async def lists(c, m):
     driver.get(link)
     await asyncio.sleep(5)
     title = driver.title
-    links = driver.find_elements(By.TAG_NAME, "h2")
+    links = driver.find_elements(By.CLASS_NAME, "ipsStreamItem_title")
     msg = []
     count = 0
-    try:
-        for link in links:
-            text = link.text
-            url = driver.find_element(By.LINK_TEXT, text).get_attribute("href")
-            count += 1
-            msgs = f"{count}. [{text}]({url})\n\n"
-            msg.append(msgs)
-    except NoSuchElementException:
-        pass
+
+    for link in links:
+        text = link.text
+        url0 = link.find_element(By.CLASS_NAME, 'ipsType_break')
+        url1 = url0.find_element(By.TAG_NAME, 'a').get_attribute("href")
+        print(url1)
+        count += 1
+        msgs = f"{count}. <a href='{url1}'>{text}</a>\n\n"
+        msg.append(msgs)
 
     for text in msg[0:20]:
         texts += text
-    reply = f"**{title}**\n\n{texts}"
-    await c.send_message(m.chat.id, reply, disable_web_page_preview=True)
+    reply = f"<b>{title}</b>\n\n{texts}"
+    await c.send_message(m.chat.id, reply, disable_web_page_preview=True, parse_mode="html")
     await txt.delete()
 
 
@@ -146,6 +147,38 @@ async def lists(c, m):
     reply = f"**{title}**\n\n{texts}"
     await c.send_message(m.chat.id, reply, disable_web_page_preview=True)
     await txt.delete()
+    
+    
+@bot.on_message(filters.command('latest'))
+async def ss(bot, message):
+    # Getting ss of tamilmv
+    txt = await bot.send_message(message.chat.id, "Getting screenshot of latest movies of 1TamilMv.com")
+    N = 7
+    name = ''.join(random.choices(string.ascii_uppercase +
+                                 string.digits, k=N))
+    driver.get("https://www.1tamilmv.com/")
+    photo = name + ".png"
+    driver.save_screenshot(photo)
+
+    # Getting ss of tamilblasters
+    N = 7
+    name = ''.join(random.choices(string.ascii_uppercase +
+                                 string.digits, k=N))
+    driver.get("https://www.tamilblasters.com/")
+    await txt.edit(text="Got Screenshot of 1TamilMv.com. Now Getting screenshot of latest movies of TamilBlasters.com")
+    photo1 = name + ".png"
+    driver.save_screenshot(photo1)
+    await txt.delete()
+
+    # sending captured ss to user
+    await message.reply_photo(photo, quote=True, caption="**Screenshot of latest movies of 1TamilMV.com**")
+    await message.reply_photo(photo1, quote=True, caption="**Screenshot of latest movies of TamilBlasters.com**")
+
+    # deleting captured from db
+    os.remove(photo)
+    os.remove(photo1)    
+    
+    
 
 print("Bot running...")
 bot.run()
