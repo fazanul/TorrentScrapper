@@ -218,11 +218,14 @@ async def ss(bot, message):
     os.remove(photo1)    
     
     
-#channel post
+# channel post
 @bot.on_message(filters.command('post'))
 async def link_handler(bot, message):
     try:
-        link = str(message.command[1])
+        try:
+            link = str(message.command[1])
+        except IndexError:
+            await message.reply(f'`/post [movie_url]`', quote=True) 
         txt = await message.reply_text("Loading 🔄", quote=True)
         driver.get(link)
         photo = driver.find_element(By.CLASS_NAME, "ipsImage_thumbnailed").get_attribute("src")
