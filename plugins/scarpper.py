@@ -8,7 +8,7 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 from pyrogram import Client, filters
 from pyrogram.errors.exceptions.bad_request_400 import MessageEmpty
-
+from plugins.messages import msg, caption
 
 options = webdriver.ChromeOptions()
 options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
