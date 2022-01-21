@@ -64,9 +64,9 @@ async def link_regex(bot, message):
         await txt.delete()
 
 
-@bot.on_message(filters.regex(r'https://t2links\.kevin-264\.workers\.dev/0:/'))
+@bot.on_message(filters.command('add_remote'))
 async def link_handler(bot, message):
-    link = str(message.text)
+    link = str(message.command[1])
     try:
         short_link = await get_shortlink(link)
         await message.reply(f"<code>https://videovard.sx/e/{short_link}</code>", quote=True)
