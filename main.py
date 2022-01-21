@@ -11,6 +11,7 @@ from selenium.common.exceptions import NoSuchElementException
 from pyrogram import Client, filters
 from pyrogram.errors.exceptions.bad_request_400 import MessageEmpty
 from config import API_ID, API_HASH, BOT_TOKEN
+
 options = webdriver.ChromeOptions()
 options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 options.add_argument("--headless")
@@ -18,8 +19,10 @@ options.add_argument("--disable-dev-shm-usage")
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-gpu")
 options.add_argument("--disable-infobars")
+
 driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=options)
 driver.maximize_window()
+
 bot = Client(
     "Web Scrapping Bot",
     bot_token=BOT_TOKEN,
@@ -31,6 +34,29 @@ bot = Client(
 torrent = []
 API_KEY = "3239u7cq042faca6z1m5"
 
+
+caption = """
+**👇 Click Here To Watch 👇
+
+200MB - Click
+
+400MB - Click
+
+700MB - Click
+
+1.40GB - Click
+
+Join - T.me/t2links**
+"""
+
+
+msg = f"""
+**👇 Click Here To Watch 👇
+
+@
+
+Streaming Link - Will be uploaded**
+"""
 
 @bot.on_message(filters.command('start'))
 async def start(bot, message):
@@ -186,6 +212,27 @@ async def ss(bot, message):
     os.remove(photo1)    
     
     
+#channel post
+@bot.on_message(filters.command('post'))
+async def link_handler(bot, message):
+    try:
+        link = str(message.command[1])
+        txt = await message.reply_text("Loading 🔄", quote=True)
+        driver.get(link)
+        photo = driver.find_element(By.CLASS_NAME, "ipsImage_thumbnailed").get_attribute("src")
 
+        try:
+            title = driver.find_element(By.XPATH, '//h1').text
+        except NoSuchElementException:
+            title = ""
+        heading = f"**{title}**\n"
+        await message.reply_photo(photo, caption=heading + caption, quote=True)
+        await message.reply_text(heading + msg, quote=True)
+        await txt.delete()
+
+    except Exception as e:
+        await txt.edit_text("Some Error Occurred, Try Again")
+        
+        
 print("Bot running...")
 bot.run()
