@@ -56,7 +56,7 @@ async def link_regex(bot, message):
 
 
 @Client.on_message(filters.command('listmv'))
-async def lists(c, m):
+async def listmv(c, m):
     querys = ""
     texts = ""
     length = len(m.command)
