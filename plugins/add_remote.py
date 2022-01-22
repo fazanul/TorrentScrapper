@@ -9,10 +9,10 @@ from config import API_KEY
 @Client.on_message(filters.command('add_remote'))
 async def link_handler(bot, message):
     try:
-        reply_message = message.reply_to_message.text
-        if reply_message:
-            link = reply_message
-        elif not reply_message:
+        try:
+            reply_messages = message.reply_to_message.text
+            link = reply_messages
+        except AttributeError:
             link = str(message.command[1])
         short_link = await get_shortlink(link)
         await message.reply(f"<code>https://videovard.sx/e/{short_link}</code>", quote=True)
@@ -29,3 +29,4 @@ async def get_shortlink(link):
             data = await response.json()
             result = data["result"]
             return result["filecode"]
+
