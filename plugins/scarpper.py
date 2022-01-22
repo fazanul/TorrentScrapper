@@ -154,11 +154,15 @@ async def ss(bot, message):
     os.remove(photo)
     os.remove(photo1)
 
-
 # channel post
 @Client.on_message(filters.command('post'))
-async def link_handler(bot, message):
+async def post(bot, message):
     try:
+        try:
+            reply_messages = message.reply_to_message.text
+            link = reply_messages
+        except AttributeError:
+            pass
         try:
             link = str(message.command[1])
         except IndexError:
