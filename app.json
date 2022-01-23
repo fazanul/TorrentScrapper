@@ -1,37 +1,49 @@
 {
-    "name": "Torrent Scrapper bot from 1TamilMV",
-    "description": "A Simple Telegram Bot to scrap torrents from 1TamilMV.com",
-    "keywords": [
-        "telegram",
-        "scrapper",
-        "torrent",
-        "search",
-        "bot"
-    ],
-    "repository": "https://github.com/AbirHasan2005/Torrent-Search-Bot",
-    "website": "https://telegram.dog/ask_admin001",
-    "success_url": "https://github.com/AbirHasan2005/Torrent-Search-Bot",
-    "env": {
-        "API_ID": {
-            "description": "Get this value from my.telegram.org or @TeleORG_Bot"
-        },
-        "API_HASH": {
-            "description": "Get this value from my.telegram.org or @TeleORG_Bot"
-        },
-
-        "BOT_TOKEN": {
-            "description": "Your Telegram Bot Token by @BotFather"
-        },
-    },
-    "buildpacks": [
-        {
-            "url": "heroku/python"
-        }
-    ],
-    "formation": {
-        "worker": {
-            "quantity": 1,
-            "size": "free"
-        }
-    },
+   "name":"TorrentScrapper",
+   "description":"A bot to scarp torrents from 1TamilMV and TamilBlasters and upload videos to videovard.sx",
+   "logo":"https://play-lh.googleusercontent.com/qb7DtNhXGREfw8VGPCMkmO3Y2EzZMy8j6VfuMtwkKbBcVAdGxcA12u5-4j2sEDUSfFY",
+   "keywords":[
+      "Torrent",
+      "Scrapper",
+      "Telegram Bot",
+      "T2links"
+   ],
+   "website":"https://t.me/t2links",
+   "repository":"https://github.com/kevinnadar22/TorrentScrapper",
+   "success_url":"https://telegram.dog/t2links",
+   "env":{
+      "TG_BOT_TOKEN":{
+         "description":"You Telegram Bot Token from @BotFather",
+         "value":""
+      },
+      "API_HASH":{
+         "description":"Your API Hash from my.telegram.org or @UseTGXBot",
+         "value":""
+      },
+      "APP_ID":{
+         "description":"Your APP ID from my.telegram.org or @UseTGXBot",
+         "value":""
+      },
+      "API_KEY":{
+         "description":"Get this value from videovard.sx/settings",
+         "value":""
+      }
+   },
+   "buildpacks":[
+      {
+         "url":"heroku/python"
+      },
+      {
+         "url":"https://github.com/heroku/heroku-buildpack-google-chrome"
+      },
+      {
+         "url":"https://github.com/heroku/heroku-buildpack-chromedriver"
+      }
+   ],
+   "formation":{
+      "worker":{
+         "quantity":1,
+         "size":"free"
+      }
+   }
 }
