@@ -28,6 +28,15 @@
          "description":"Get this value from videovard.sx/settings",
          "value":""
       }
+      "CHROMEDRIVER_PATH":{
+         "description":"Leave it default",
+         "value":"/app/.chromedriver/bin/chromedriver"
+      } 
+      "GOOGLE_CHROME_BIN":{
+         "description":"Leave it default",
+         "value":"/app/.apt/usr/bin/google-chrome"
+      }    
+   
    },
    "buildpacks":[
       {
