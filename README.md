@@ -12,3 +12,5 @@ Just a Bot to scrap torrent links from [1TamilMV.com](https://1Tamilmv.com/) and
 
 * `API_ID`: Get this value from [telegram.org](https://my.telegram.org/apps)
 * `API_HASH`: Get this value from [telegram.org](https://my.telegram.org/apps)
+
+* `API_KEY`: Get this value from [videovard.sx](https://videovard.sx/settings)
