@@ -66,7 +66,7 @@ async def cb_handler(c, m):
         for link in torrent_link:
             tor = link.get_attribute("href")
             text = link.text
-            msg += f"**Name : {text}**\n**Link:** `{random_command}` `{tor}`\n\n-\n\n"
+            msg += f"**Name : {text}**\n**Link:** `{random_command} {tor}`\n\n-\n\n"
         if msg == "":
             await m.send_message(-1001549256479, "No Torrents Found")
             await m.message.delete()
