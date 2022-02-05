@@ -22,7 +22,9 @@ options.add_argument("--disable-infobars")
 driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=options)
 driver.maximize_window()
 torrent = []
-@bot.on_message(filters.regex("index\.php\?/forums/topic") | filters.CallbackQuery)
+
+
+@Client.on_message(filters.regex("index\.php\?/forums/topic") | filters.CallbackQuery)
 async def link_regex(bot, message):
     await message.reply(text="Scrapping torrent link, Please Wait",
                         reply_markup=InlineKeyboardMarkup(buttons))
