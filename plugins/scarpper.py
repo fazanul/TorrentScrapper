@@ -9,6 +9,7 @@ from selenium.common.exceptions import NoSuchElementException
 from pyrogram import Client, filters
 from pyrogram.errors.exceptions.bad_request_400 import MessageEmpty
 from plugins.messages import msg, caption
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 options = webdriver.ChromeOptions()
 options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
@@ -21,12 +22,21 @@ options.add_argument("--disable-infobars")
 driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=options)
 driver.maximize_window()
 torrent = []
-
-@Client.on_message(filters.regex("^https.*index\.php\?/forums/topic"))
+@bot.on_message(filters.regex("index\.php\?/forums/topic") | filters.CallbackQuery)
 async def link_regex(bot, message):
+    await message.reply(text="Scrapping torrent link, Please Wait",
+                        reply_markup=InlineKeyboardMarkup(buttons))
+    global link
+    link = str(message.text)
+
+
+@Client.on_callback_query()
+async def cb_handler(c, m):
     try:
-        txt = await message.reply_text("Scrapping torrent link, Please Wait")
-        link = str(message.text)
+        data = m.data
+        txt = await m.message.edit("Scrapping torrent link, Please Wait")
+        print(data)
+        global link
         driver.get(link)
         p = driver.find_element(By.CLASS_NAME, "ipsImage_thumbnailed").get_attribute("src")
         torrent_link = driver.find_elements(By.CLASS_NAME, "ipsAttachLink_block")
@@ -36,23 +46,24 @@ async def link_regex(bot, message):
             title = ""
         heading = f"**{title}**\n\n"
         msg = ""
-        command = ['/qbleechfile', '/qbleechfile2', "/qbleechvideo"]
-        random_command = random.choice(command)
+        random_command = m.data
         for link in torrent_link:
             tor = link.get_attribute("href")
             text = link.text
-            msg += f"**Name : {text}**\n**Link:** `{random_command} {tor}`\n\n-\n\n"
+            msg += f"**Name : {text}**\n**Link:** `{random_command}` `{tor}`\n\n-\n\n"
         if msg == "":
-            await message.reply_text("No Torrents Found", quote=True)
-            await txt.delete()
+            await m.send_message(-1001549256479, "No Torrents Found")
+            await m.message.delete()
         elif msg != "":
             reply_text = f"{msg}**--@T2Links**"
-            await message.reply_photo(p, caption=heading, quote=True)
-            await message.reply_text(reply_text, quote=True)
+            await c.send_photo(-1001549256479, p, caption=heading)
+            await c.send_message(-1001549256479, reply_text)
             await txt.delete()
-    except MessageEmpty:
-        await message.reply_text('Some error occurred')
+
+    except Exception as e:
+        await c.send_message(-1001549256479, 'Some error occurred')
         await txt.delete()
+
 
 
 @Client.on_message(filters.command('listmv'))
