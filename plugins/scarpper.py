@@ -23,6 +23,20 @@ driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), c
 driver.maximize_window()
 torrent = []
 
+buttons = [
+    [
+        InlineKeyboardButton('qbleechvideo 🏕', callback_data='/qbleechvideo')
+    ],
+    [
+        InlineKeyboardButton('qbleechfile 🔐', callback_data='/qbleechfile')
+    ],
+    [
+        InlineKeyboardButton('qbleechfile2 🔐', callback_data='/qbleechfile2')
+    ]
+]
+
+link = ""
+
 
 @Client.on_message(filters.regex("index\.php\?/forums/topic") | filters.CallbackQuery)
 async def link_regex(bot, message):
