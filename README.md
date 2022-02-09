@@ -14,3 +14,17 @@ Just a Bot to scrap torrent links from [1TamilMV.com](https://1Tamilmv.com/) and
 * `API_HASH`: Get this value from [telegram.org](https://my.telegram.org/apps)
 
 * `API_KEY`: Get this value from [videovard.sx](https://videovard.sx/settings)
+
+Commands:
+
+/listmv [query] - to search movies in TamilMV
+
+/listbl [query] - to search movies in Tamilblasters
+
+/post [tamilmv link] - makes a post of a given link
+
+/latest - to get screenshot of latest movies in TamilMV and Tamilblasters
+
+Bot Usage:
+
+Send any 1tamilmv.com or tamilblasters.com link to scrap torrents
