@@ -22,8 +22,8 @@ async def link_handler(bot, message):
 
 
         async def get_shortlink(link):
-        url = 'https://api.videovard.sx/v2/api/remote/add'
-        params = {'key': API_KEY, 'url': link}
+            url = 'https://api.videovard.sx/v2/api/remote/add'
+            params = {'key': API_KEY, 'url': link}
 
         async with aiohttp.ClientSession() as session:
             async with session.get(url, params=params, raise_for_status=True, ssl=False) as response:
