@@ -15,16 +15,24 @@ Just a Bot to scrap torrent links from [1TamilMV.com](https://1Tamilmv.com/) and
 
 * `API_KEY`: Get this value from [videovard.sx](https://videovard.sx/settings)
 
-Commands:
+##### Commands:
 
-/listmv [query] - to search movies in TamilMV
+* /listmv [query] - to search movies in TamilMV
 
-/listbl [query] - to search movies in Tamilblasters
+* /listbl [query] - to search movies in Tamilblasters
 
-/post [tamilmv link] - makes a post of a given link
+* /post [tamilmv link] - makes a post of a given link
 
-/latest - to get screenshot of latest movies in TamilMV and Tamilblasters
+* /latest - to get screenshot of latest movies in TamilMV and Tamilblasters
 
-Bot Usage:
+##### Bot Usage:
 
 Send any 1tamilmv.com or tamilblasters.com link to scrap torrents
+
+##### IF Videovard :
+
+* /add_remote [link] - remotely upload files to videovard
+
+* /files - get latest files from videovard
+
+* /get_files - search files from videovard
