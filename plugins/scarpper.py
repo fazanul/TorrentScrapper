@@ -7,9 +7,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 from pyrogram import Client, filters
-from pyrogram.errors.exceptions.bad_request_400 import MessageEmpty
-from plugins.messages import msg, caption
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from plugins.messages import caption
 
 options = webdriver.ChromeOptions()
 options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
@@ -23,35 +21,15 @@ driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), c
 driver.maximize_window()
 torrent = []
 
-buttons = [
-    [
-        InlineKeyboardButton('qbleechvideo 🏕', callback_data='/qbleechvideo')
-    ],
-    [
-        InlineKeyboardButton('qbleechfile 🔐', callback_data='/qbleechfile')
-    ],
-    [
-        InlineKeyboardButton('qbleechfile2 🔐', callback_data='/qbleechfile2')
-    ]
-]
-
 link = ""
 
 
 @Client.on_message(filters.regex("index\.php\?/forums/topic") | filters.CallbackQuery)
-async def link_regex(bot, message):
-    await message.reply(text="Scrapping torrent link, Please Wait",
-                        reply_markup=InlineKeyboardMarkup(buttons))
-    global link
-    link = str(message.text)
-
-
-@Client.on_callback_query()
-async def cb_handler(c, m):
+async def link_regex(c,m):
     try:
-        data = m.data
-        txt = await m.message.edit("Scrapping torrent link, Please Wait")
-        print(data)
+        global link
+        link = str(m.text)
+        txt = await m.edit("Scrapping torrent link, Please Wait")
         global link
         driver.get(link)
         p = driver.find_element(By.CLASS_NAME, "ipsImage_thumbnailed").get_attribute("src")
@@ -62,24 +40,23 @@ async def cb_handler(c, m):
             title = ""
         heading = f"**{title}**\n\n"
         msg = ""
-        random_command = m.data
         for link in torrent_link:
             tor = link.get_attribute("href")
             text = link.text
-            msg += f"**Name : {text}**\n**Link:** `{random_command} {tor}`\n\n-\n\n"
+            msg += f"**Name : {text}**\n**Link:** `{tor}`\n\n-\n\n"
         if msg == "":
             await m.send_message(-1001549256479, "No Torrents Found")
             await m.message.delete()
         elif msg != "":
-            reply_text = f"{msg}**--@T2Links**"
+            reply_text = f"{msg}"
             await c.send_photo(-1001549256479, p, caption=heading)
             await c.send_message(-1001549256479, reply_text)
             await txt.delete()
 
     except Exception as e:
+        print(e)
         await c.send_message(-1001549256479, 'Some error occurred')
         await txt.delete()
-
 
 
 @Client.on_message(filters.command('listmv'))
@@ -181,6 +158,7 @@ async def ss(bot, message):
     os.remove(photo)
     os.remove(photo1)
 
+
 # channel post
 @Client.on_message(filters.command('post'))
 async def post(bot, message):
@@ -204,7 +182,6 @@ async def post(bot, message):
             title = ""
         heading = f"**{title}**\n"
         await message.reply_photo(photo, caption=heading + caption, quote=True)
-        await message.reply_text(heading + msg, quote=True)
         await txt.delete()
 
     except Exception as e:

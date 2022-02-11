@@ -12,11 +12,4 @@ caption = """
 Join - T.me/t2links**
 """
 
-msg = f"""
-**👇 Click Here To Watch 👇
-
-@
-
-Streaming Link - Will be uploaded**
-"""
 
