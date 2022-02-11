@@ -22,16 +22,12 @@ driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), c
 driver.maximize_window()
 torrent = []
 
-link = ""
 
-
-@Client.on_message(filters.regex("index\.php\?/forums/topic") | filters.CallbackQuery)
+@Client.on_message(filters.regex("index\.php\?/forums/topic"))
 async def link_regex(c,m):
     try:
-        global link
         link = str(m.text)
         txt = await m.edit("Scrapping torrent link, Please Wait")
-        global link
         driver.get(link)
         p = driver.find_element(By.CLASS_NAME, "ipsImage_thumbnailed").get_attribute("src")
         torrent_link = driver.find_elements(By.CLASS_NAME, "ipsAttachLink_block")
