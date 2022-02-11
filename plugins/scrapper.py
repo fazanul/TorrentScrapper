@@ -27,7 +27,7 @@ torrent = []
 async def link_regex(c,m):
     try:
         link = str(m.text)
-        txt = await m.edit("Scrapping torrent link, Please Wait")
+        txt = await m.reply_text("Scrapping torrent link, Please Wait")
         driver.get(link)
         p = driver.find_element(By.CLASS_NAME, "ipsImage_thumbnailed").get_attribute("src")
         torrent_link = driver.find_elements(By.CLASS_NAME, "ipsAttachLink_block")
