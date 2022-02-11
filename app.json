@@ -24,11 +24,6 @@
          "description":"Your APP ID from my.telegram.org or @UseTGXBot",
          "value":""
       },
-      "API_KEY":{
-         "description":"Get this value from videovard.sx/settings",
-         "value":"",
-         "required": false
-      },
       "CHROMEDRIVER_PATH":{
          "description":"Leave it default",
          "value":"/app/.chromedriver/bin/chromedriver"
