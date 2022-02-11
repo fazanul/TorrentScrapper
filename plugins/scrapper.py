@@ -9,6 +9,7 @@ from selenium.common.exceptions import NoSuchElementException
 from pyrogram import Client, filters
 from plugins.messages import caption
 
+
 options = webdriver.ChromeOptions()
 options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 options.add_argument("--headless")
