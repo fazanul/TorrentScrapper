@@ -9,7 +9,7 @@ caption = """
 
 1.40GB - Click
 
-Join - T.me/t2links**
+Join - https://t.me/+ZRKSQAaW2_VlYWM1**
 """
 
 
